@@ -4,9 +4,9 @@
     *@author: SENTHILKUMAR R(Email Address: sk003cs@gmail.com, Ph: +919663026088)
 */
 
-"use strict";
 function ValidateInputJSON() {
-    
+    "use strict";
+        
     // Constants
     const STRING = "string";
     const NUMBER = "number";
@@ -18,7 +18,7 @@ function ValidateInputJSON() {
     const UNDEFINED = "undefined";
     
     //This method used to validate datatype of data
-    function isValid(c, v) {
+    function isValidDatatyp(c, v) {
         switch (c.t) {
             case STRING:
                 return (typeof v ===  STRING);
@@ -50,6 +50,15 @@ function ValidateInputJSON() {
         }
     };
     
+    //This method used to validate datatype of data
+    function validateRegex(c, v) {
+        if (c.r) {
+            return c.r.test(v);
+        }
+        return true;
+    };
+    
+        
     //This method used to validate datatype of object KEYS and it's VALUES
     function validateObject(cmp, inp, ignoreExtraKeys) {
         let inpLength = Object.keys(inp).length;
@@ -73,7 +82,7 @@ function ValidateInputJSON() {
                                     } else {
                                         return false;
                                     }
-                                } else if (cmp[cmpKey].m && isValid(cmp[cmpKey], inp[inpKey])) {
+                                } else if (cmp[cmpKey].m && isValidDatatyp(cmp[cmpKey], inp[inpKey]) && validateRegex(cmp[cmpKey], inp[inpKey])) {
                                     break
                                 } else {
                                     return false;
