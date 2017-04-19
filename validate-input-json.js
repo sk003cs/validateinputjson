@@ -106,7 +106,7 @@ function ValidateInputJSON() {
     };
     
     //This method is entry point to validate JSON object KEYS and it's VALUES
-    this.validateJSON = function  validateJSON(cmp, inp, ignoreExtraKeys) {
+    this.validate = function  validate(cmp, inp, ignoreExtraKeys) {
         if (cmp && inp && typeof cmp === typeof inp) {
             if(typeof cmp === OBJECT && Array.isArray(cmp)) {
                 return validateArrayOfObject(cmp, inp, ignoreExtraKeys);
